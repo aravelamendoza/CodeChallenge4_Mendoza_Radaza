@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.*      // For Column, Spacer, Row, etc.
+import androidx.compose.foundation.layout.*      
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons    // For default icons
-import androidx.compose.material.icons.filled.Visibility      // For password visibility icon
-import androidx.compose.material.icons.filled.VisibilityOff   // For password visibility off icon
+import androidx.compose.material.icons.Icons  
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -50,17 +50,11 @@ fun FormUI(modifier: Modifier = Modifier) {
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var message by remember { mutableStateOf("") }
-
-    // Hobbies state variables
     var hobbyMountaineering by remember { mutableStateOf(false) }
     var hobbyPhotography by remember { mutableStateOf(false) }
     var hobbyCoding by remember { mutableStateOf(false) }
     var hobbyEating by remember { mutableStateOf(false) }
-
-    // Experience level state
     var selectedExperienceLevel by remember { mutableStateOf("") }
-
-    // Password state variables
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -77,7 +71,7 @@ fun FormUI(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Name field
+
         Text("Enter your name:")
         OutlinedTextField(
             value = name,
@@ -88,7 +82,7 @@ fun FormUI(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Email field
+
         Text("Enter your Email:")
         OutlinedTextField(
             value = email,
@@ -100,7 +94,7 @@ fun FormUI(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Message field
+
         Text("Enter your Message:")
         OutlinedTextField(
             value = message,
@@ -113,7 +107,7 @@ fun FormUI(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Hobbies Section
+
         Text("Select your hobbies", style = MaterialTheme.typography.titleMedium)
         Row(verticalAlignment = Alignment.CenterVertically) {
             Checkbox(checked = hobbyMountaineering, onCheckedChange = { hobbyMountaineering = it })
@@ -134,7 +128,7 @@ fun FormUI(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Experience Level
+
         Text("Select your experience level", fontSize = 16.sp, modifier = Modifier.padding(bottom = 8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
             RadioButton(
@@ -160,7 +154,7 @@ fun FormUI(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Password field
+
         Text("Enter your Password:")
         OutlinedTextField(
             value = password,
