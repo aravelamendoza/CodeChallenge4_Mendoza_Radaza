@@ -4,14 +4,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.*      
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons  
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -29,7 +32,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.codechallenge4.ui.theme.CodeChallenge4Theme
-
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +59,8 @@ fun FormUI(modifier: Modifier = Modifier) {
     var selectedExperienceLevel by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
+    var selectedGender by remember { mutableStateOf("Select Gender") }
 
     Column(
         modifier = modifier
@@ -71,7 +75,6 @@ fun FormUI(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-
         Text("Enter your name:")
         OutlinedTextField(
             value = name,
@@ -81,7 +84,6 @@ fun FormUI(modifier: Modifier = Modifier) {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-
 
         Text("Enter your Email:")
         OutlinedTextField(
@@ -93,7 +95,6 @@ fun FormUI(modifier: Modifier = Modifier) {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-
 
         Text("Enter your Message:")
         OutlinedTextField(
@@ -107,6 +108,46 @@ fun FormUI(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        Text("Select your gender:")
+        Box(modifier = Modifier.fillMaxWidth()) {
+            OutlinedTextField(
+                value = selectedGender,
+                onValueChange = { },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { expanded = true },
+                enabled = false,
+                label = { Text("Gender") }
+            )
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                DropdownMenuItem(
+                    text = { Text("Male") },
+                    onClick = {
+                        selectedGender = "Male"
+                        expanded = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("Female") },
+                    onClick = {
+                        selectedGender = "Female"
+                        expanded = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("Other") },
+                    onClick = {
+                        selectedGender = "Other"
+                        expanded = false
+                    }
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text("Select your hobbies", style = MaterialTheme.typography.titleMedium)
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -127,7 +168,6 @@ fun FormUI(modifier: Modifier = Modifier) {
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-
 
         Text("Select your experience level", fontSize = 16.sp, modifier = Modifier.padding(bottom = 8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -153,7 +193,6 @@ fun FormUI(modifier: Modifier = Modifier) {
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-
 
         Text("Enter your Password:")
         OutlinedTextField(
